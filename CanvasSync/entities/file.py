@@ -67,6 +67,7 @@ class File(CanvasEntity):
     def download(self):
         """ Download the file """
         if os.path.exists(self.sync_path):
+            self.print_status(u"SYNCED", color=u"green")
             return False
 
         self.print_status(u"DOWNLOADING", color=u"blue")
@@ -115,7 +116,7 @@ class File(CanvasEntity):
         """
         if not self.locked:
             was_downloaded = self.download()
-            self.print_status(u"SYNCED", color=u"green", overwrite_previous_line=was_downloaded)
+            self.print_status(u"DOWNLOADED", color=u"green", overwrite_previous_line=was_downloaded)
         else:
             self.print_status(u"LOCKED", color=u"red", overwrite_previous_line=False)
 
